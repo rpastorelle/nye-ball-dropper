@@ -39,19 +39,37 @@ function ballDropApp() {
 
       },
       // Function to simulate ball drop and reveal clues
-      dropBall: function() {
+      dropBall: function(nye=false) {
 
-        const currentHour = new Date().getHours(); // Get current hour (0-23)
-        let targetNode;
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth(); // 0 for January, 11 for December
+        const currentDay = currentDate.getDate();
 
-        if (currentHour === 0) { // Midnight
-            targetNode = 12;
-        } else if (currentHour >= 13 && currentHour <= 23) { // 1 PM (13) to 11 PM (23)
-            targetNode = currentHour - 12;
-        } else {
-            // It's before 1 PM, so no movement required
-            return;
+        let targetNode = 0;
+        if (nye || (currentMonth === 11 && currentDay === 31)) {
+
+          // It's NYE!
+          const currentHour = currentDate.getHours();
+          if (currentHour === 0) { // Midnight
+              targetNode = 12;
+          } else if (currentHour >= 13 && currentHour <= 23) { // 1 PM (13) to 11 PM (23)
+              targetNode = currentHour - 12;
+          } else {
+              // It's before 1 PM
+              targetNode = 0;
+          }
+
+        } else if (currentYear >= 2024) {
+          targetNode = 12;
         }
+
+        console.log("@@@ dropBall", currentDate, "with ", {
+          currentYear,
+          currentMonth,
+          currentDay,
+          targetNode,
+        });
 
         this.moveToNode(targetNode);
 
@@ -59,13 +77,14 @@ function ballDropApp() {
       init() {
         const queryParams = new URLSearchParams(window.location.search);
         const nodeNumber = queryParams.get('n');
+        const nye = queryParams.get('nye') !== null;
 
         const moveBall = () => {
           if (nodeNumber !== null) {
             // Set to 'n' param, if exists
             this.moveToNode(parseInt(nodeNumber, 10));
           } else {
-            this.dropBall();
+            this.dropBall(nye);
           }
         };
 
