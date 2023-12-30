@@ -1,0 +1,154 @@
+:root {
+  --footerHeight: 50px; /* Example: Footer height */
+  --clueHeight: 80px; /* Example: Footer height */
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: center;
+}
+/* Overlay Style */
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensures it's above the background but below other content */
+}
+/* Ensure content is above the overlay */
+#pole, .node, #ball, footer {
+  position: relative;
+  z-index: 2;
+}
+header {
+  /* background-image: url('./images/nye-dropper-bg.png'); */
+  background-image: url('https://cdn.filestackcontent.com/UBYZDKMQwmznOFZL0ZAK');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 20px; /* Adjust as needed for your layout */
+  min-height: calc(100vh - var(--footerHeight) - 40px);
+}
+header.midnight {
+  background-image: url('https://cdn.filestackcontent.com/iygzBDOqRnquXYSAyib4');
+}
+#pole {
+  width: 4px;
+  height: 90%;
+  margin: 8px auto;
+  background: linear-gradient(to right, #4a4a4a 0%, #dcdcdc 50%, #4a4a4a 100%);
+  position: absolute;
+  left: calc(50% - 2px);
+  transform: translateX(-50%);
+  /* round the top of the pole: */
+  border-radius: 45% 45% 0 0;
+}
+.node {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #b0b0b0b9;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.photo-clue {
+  max-width: 180px;
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: -65px;
+  border: 1px solid #cdcccc;
+  text-decoration: none;
+  flex-direction: column;
+  /* display: flex; */
+}
+.node:nth-of-type(odd) .photo-clue {
+  left: 20px; /* Position to the right of the node */
+}
+.node:nth-of-type(even) .photo-clue {
+  right: 20px; /* Position to the left of the node */
+}
+.photo-clue.revealed {
+  display: flex;
+}
+.photo-clue img.thumbnail {
+  width: var(--clueHeight);
+  height: var(--clueHeight);
+  object-fit: cover;
+}
+.title {
+  display: block;
+  background-color: #ffffff7c;
+  padding: 2px 5px;
+  color: #333;
+  font-weight: bold;
+  font-size: 0.5rem;
+}
+#ball {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #aaaaaa;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #868686, #cdcccc); /* Darker gradient */
+  box-shadow: 0 0 16px 2px rgba(255, 255, 255, 0.9); /* Glow effect */
+  background-size: 10px 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: top 1s ease;
+  z-index: 10;
+}
+.dots {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image:
+      radial-gradient(circle, #FFFFFF 1px, transparent 1px),
+      radial-gradient(circle, #FFFFFF 0.5px, transparent 0.5px);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  animation: sparkle 7s infinite ease-in-out alternate;
+}
+@keyframes sparkle {
+  0% { background-position: 0 0, 5px 5px; }
+  50% { background-position: 3px 3px, -2px -2px; }
+  100% { background-position: 1px -1px, 4px 6px; }
+}
+/* Position nodes */
+/* This is a basic setup, you may need to adjust the positions */
+#node1 { top: 6%; }
+#node2 { top: 13%; }
+#node3 { top: 21%; }
+#node4 { top: 29%; }
+#node5 { top: 37%; }
+#node6 { top: 45%; }
+#node7 { top: 53%; }
+#node8 { top: 61%; }
+#node9 { top: 69%; }
+#node10 { top: 77%; }
+#node11 { top: 85%; }
+#node12 { top: 93%; }
+footer {
+  background-color: #444;
+  background: linear-gradient(to bottom, #4a4a4a 0%, #848484 50%, #4a4a4a 100%);
+  color: white;
+  padding: 10px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: var(--footerHeight);
+}
+footer p {
+  font-size: 16px;
+}

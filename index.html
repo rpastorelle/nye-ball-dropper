@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year's Eve Ball Dropper</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script defer src="./ball-dropper.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Preloading the confetti image -->
+    <link rel="preload" href="https://cdn.filestackcontent.com/iygzBDOqRnquXYSAyib4" as="image">
+</head>
+<body x-data="ballDropApp()">
+    <!-- Header: Ball Drop Simulation -->
+    <header id="ballDrop" :class="{ 'midnight': isMidnight }">
+      <div class="header-overlay"></div>
+      <div id="pole">
+          <!-- style="top: calc(0% - 24px);" -->
+          <div id="ball" :style="{ top: ballPosition }"><!-- Starting position at top node -->
+            <div class="dots"></div>
+          </div>
+          <!-- Photo Clues -->
+          <div id="node1" class="node">
+            <a href="https://i.ytimg.com/vi/pY59MCH7p70/maxresdefault.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 1 ? 'display: flex' : 'display: none'">
+              <img src="https://i.ytimg.com/vi/pY59MCH7p70/maxresdefault.jpg" class="thumbnail">
+              <span class="title">Golden Nugget</span>
+            </a>
+          </div>
+          <div id="node2" class="node">
+            <a href="https://iambaker.net/wp-content/uploads/2020/03/sourdough-bread-5.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 2 ? 'display: flex' : 'display: none'">
+              <img src="https://iambaker.net/wp-content/uploads/2020/03/sourdough-bread-5.jpg" class="thumbnail">
+              <span class="title">Sourdough</span>
+            </a>
+          </div>
+          <div id="node3" class="node">
+            <a href="https://images.squarespace-cdn.com/content/v1/5508dbfce4b014ff8cf57f2f/1578377872992-2LYFOO9PY58UJS6S617B/Philz+Coffee+Mint+Mojito+Recipe" target="_blank" class="photo-clue" x-bind:style="currentNode >= 3 ? 'display: flex' : 'display: none'">
+              <img src="https://images.squarespace-cdn.com/content/v1/5508dbfce4b014ff8cf57f2f/1578377872992-2LYFOO9PY58UJS6S617B/Philz+Coffee+Mint+Mojito+Recipe" class="thumbnail">
+              <span class="title">Coffee</span>
+            </a>
+          </div>
+          <div id="node4" class="node">
+            <a href="https://weburbanist.com/wp-content/uploads/2008/02/lost-television-show-island-map-and-rendering.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 4 ? 'display: flex' : 'display: none'">
+              <img src="https://weburbanist.com/wp-content/uploads/2008/02/lost-television-show-island-map-and-rendering.jpg" class="thumbnail">
+              <span class="title">The Island</span>
+            </a>
+          </div>
+          <div id="node5" class="node">
+            <a href="https://open.spotify.com/playlist/2ChoCdmComnoIklPaBOWBc?si=74a4386475a94fa4" target="_blank" class="photo-clue" x-bind:style="currentNode >= 5 ? 'display: flex' : 'display: none'">
+              <img src="https://cdn.filestackcontent.com/4CNvmt0aTKWeqGqgUxHA" class="thumbnail">
+              <span class="title">A poem</span>
+            </a>
+          </div>
+          <div id="node6" class="node">
+            <a href="https://open.spotify.com/playlist/2ChoCdmComnoIklPaBOWBc?si=74a4386475a94fa4" target="_blank" class="photo-clue" x-bind:style="currentNode >= 6 ? 'display: flex' : 'display: none'">
+              <img src="https://cdn.filestackcontent.com/4CNvmt0aTKWeqGqgUxHA" class="thumbnail">
+              <span class="title">Playlist</span>
+            </a>
+          </div>
+          <div id="node7" class="node">
+            <a href="https://m.media-amazon.com/images/I/51SpXyHMyWL._SX300_SY300_QL70_FMwebp_.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 7 ? 'display: flex' : 'display: none'">
+              <img src="https://m.media-amazon.com/images/I/51SpXyHMyWL._SX300_SY300_QL70_FMwebp_.jpg" class="thumbnail">
+              <span class="title">Fortune Cookie</span>
+            </a>
+          </div>
+          <div id="node8" class="node">
+            <a href="https://s28164.pcdn.co/files/sea-lion-event-photo-1280x720.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 8 ? 'display: flex' : 'display: none'">
+              <img src="https://s28164.pcdn.co/files/sea-lion-event-photo-1280x720.jpg" class="thumbnail">
+              <span class="title">Sea Lion</span>
+            </a>
+          </div>
+          <div id="node9" class="node">
+            <a href="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2020%2F11%2F04%2Fghirardelli-brownie-image-2000.jpg&q=60&c=sc&orient=true&poi=auto&h=512" target="_blank" class="photo-clue" x-bind:style="currentNode >= 9 ? 'display: flex' : 'display: none'">
+              <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2020%2F11%2F04%2Fghirardelli-brownie-image-2000.jpg&q=60&c=sc&orient=true&poi=auto&h=512" class="thumbnail">
+              <span class="title">Brownies</span>
+            </a>
+          </div>
+          <div id="node10" class="node">
+            <a href="https://leonardpzakimbunkerhillbridge.org/wp-content/uploads/2020/11/Zakim_Bridge_AndyRyan.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 10 ? 'display: flex' : 'display: none'">
+              <img src="https://leonardpzakimbunkerhillbridge.org/wp-content/uploads/2020/11/Zakim_Bridge_AndyRyan.jpg" class="thumbnail">
+              <span class="title">Bridge</span>
+            </a>
+          </div>
+          <div id="node11" class="node">
+            <a href="https://www.cleveland.com/resizer/loy3MD-e8eBrdoPf7V8iJHSALbc=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/5LS5WX5UH5EDVF3ASXKS7QF3DQ.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 11 ? 'display: flex' : 'display: none'">
+              <img src="https://www.cleveland.com/resizer/loy3MD-e8eBrdoPf7V8iJHSALbc=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/5LS5WX5UH5EDVF3ASXKS7QF3DQ.jpg" class="thumbnail">
+              <span class="title">Victorians</span>
+            </a>
+          </div>
+          <div id="node12" class="node">
+            <a href="https://www.cleveland.com/resizer/loy3MD-e8eBrdoPf7V8iJHSALbc=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/5LS5WX5UH5EDVF3ASXKS7QF3DQ.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 12 ? 'display: flex' : 'display: none'">
+              <img src="https://www.cleveland.com/resizer/loy3MD-e8eBrdoPf7V8iJHSALbc=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/5LS5WX5UH5EDVF3ASXKS7QF3DQ.jpg" class="thumbnail">
+              <span class="title">REVEAL!</span>
+            </a>
+          </div>
+      </div>
+  </header>
+
+  <!-- Footer -->
+  <footer>
+      <p>Happy New Year 2024!</p>
+  </footer>
+</body>
+</html>
