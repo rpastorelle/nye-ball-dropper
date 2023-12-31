@@ -28,9 +28,13 @@
             </a>
           </div>
           <div id="node2" class="node">
-            <a href="https://cdn.filestackcontent.com/j3wtY5onQLlZKCjiM3dR" target="_blank" class="photo-clue" x-bind:style="currentNode >= 2 ? 'display: flex' : 'display: none'">
+            <a href="https://cdn.filestackcontent.com/j3wtY5onQLlZKCjiM3dR" target="_blank" class="photo-clue" x-bind:style="currentNode >= 2 && !useAltClues ? 'display: flex' : 'display: none'">
               <img src="https://cdn.filestackcontent.com/j3wtY5onQLlZKCjiM3dR" class="thumbnail">
               <span class="title">Spray</span>
+            </a>
+            <a href="https://venturaspirits.com/cdn/shop/products/AMARO_FRONT_1080x.jpg" target="_blank" class="photo-clue" x-bind:style="currentNode >= 2 && useAltClues ? 'display: flex' : 'display: none'">
+              <img src="https://venturaspirits.com/cdn/shop/products/AMARO_FRONT_1080x.jpg" class="thumbnail">
+              <span class="title">Amaro</span>
             </a>
           </div>
           <div id="node3" class="node">
