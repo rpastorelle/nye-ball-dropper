@@ -2,6 +2,7 @@ function ballDropApp() {
   return {
       currentNode: 0, // Start at the top
       isMidnight: false,
+      useAltClues: false,
       get ballPosition() {
         const positions = {
             0: '0%',
@@ -78,6 +79,9 @@ function ballDropApp() {
         const queryParams = new URLSearchParams(window.location.search);
         const nodeNumber = queryParams.get('n');
         const nye = queryParams.get('nye') !== null;
+        const clues = queryParams.get('clue') !== null;
+
+        this.useAltClues = queryParams.has('alt');
 
         const moveBall = () => {
           if (nodeNumber !== null) {
@@ -90,6 +94,13 @@ function ballDropApp() {
 
         // Wait 1 second before dropping ball
         setTimeout(moveBall, 1000);
+
+        if (clues) {
+          // Show clues title if 'clue' param exists
+          document.querySelectorAll('.title').forEach((el) => {
+            el.classList.add('revealed');
+          });
+        }
 
         window.moveToNextNode = this.moveToNextNode.bind(this);
         window.moveToNode = this.moveToNode.bind(this);

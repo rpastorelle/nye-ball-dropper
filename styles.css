@@ -88,12 +88,15 @@ header.midnight {
   object-fit: cover;
 }
 .title {
-  display: block;
+  display: none;
   background-color: #ffffff7c;
   padding: 2px 5px;
   color: #333;
   font-weight: bold;
   font-size: 0.5rem;
+}
+.title.revealed {
+  display: block;
 }
 #ball {
   width: 45px;
